@@ -1,0 +1,75 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<style>
+ul{
+     list-style: none;
+}
+h1,h6{
+     display: inline; 
+     margin: 5px;
+}
+</style>
+
+<h1> v-for - iterando em objetos </h1>
+
+<div id="app">
+     <!-- lista de objetos -->
+     <ul>
+          <li v-for="p in pessoas">
+               {{p.nome}}
+          </li>
+     </ul>
+
+    <!-- for dentro do objeto valor-->
+     <ul>
+          <li v-for="p in pessoas">
+               <span v-for="valor in p"> {{ valor }} </span>
+          </li>
+     </ul>
+     
+      <!-- for dentro do for -chave valor-->
+     <ul>
+          <li v-for="p in pessoas">
+               <div v-for="(valor,chave) in p"> {{chave}} {{ valor }} </div>
+          </li>
+     </ul>
+          
+     <!-- for dentro do for - chave valor indice-->
+     <ul>
+          <li v-for="p in pessoas">
+               <div v-for="(valor,chave, indice) in p"> {{indice}} - {{chave}} {{ valor }} </div>
+          </li>
+     </ul>
+     
+     
+     <hr />
+    <!-- indice -->
+    <ul>
+         <li v-for="(cor,i) in cores">{{i +1}} - {{cor}}</li>
+               <!-- (elemento, indice) -->
+    </ul>
+
+    <hr />
+    <!-- usando template -->
+    <template v-for="(cor,i) in cores">
+          <h6>{{i}}</h6>
+          <h1>{{cor}}</h1>
+     </template>
+
+
+</div>
+
+<script>
+     new Vue({
+          el:'#app',
+          data:{
+               cores:['vermelho','verde','amarelo','azul'],
+               pessoas:[
+                    {nome:'ana',idade:26, peso:59},
+                    {nome:'guilherme',idade:22, peso:89}
+               ]
+          }
+     });
+</script>
+

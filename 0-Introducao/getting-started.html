@@ -1,0 +1,49 @@
+<html>
+     <head>
+          <title></title>
+          <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     </head>
+     <body>
+          <div id="app">
+               <h1 v-once>{{ title }}</h1>
+               <h2>{{ changeTitle() }}</h2>
+               <p> <a v-bind:href="link">link</a></p>
+               <hr>
+               <p v-html="finishedLink"></p>
+               <hr>
+               <input type="text" v-on:input="putObs()" >
+               <p v-bind="obs"></p>
+
+               <hr>
+               <button v-on:click="increase">click me</button>
+               <p>{{count}}</p>
+          </div>
+
+          <script>
+               new Vue(
+                    {
+                         el:'#app',
+                         data:{
+                              title: "Hello World",
+                              link: 'http://google.com',
+                              finishedLink: '<a href="http://uol.com.br" target="_blank">outro link</a>',
+                              obs:'',
+                              count:0
+                         },
+                         methods:{
+                              changeTitle : function(){
+                                   this.title = 'Hello';
+                                   return this.title;
+                              },
+                              putObs(event){
+                                   this.obs = event.target.value;
+                              },
+                              increase(){
+                                   this.count++;
+                              }
+                         }
+                    }
+               );
+          </script>
+     </body>
+</html>

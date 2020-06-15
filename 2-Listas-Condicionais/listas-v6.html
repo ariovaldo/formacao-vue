@@ -1,0 +1,113 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<style>
+ul{
+     list-style: none;
+}
+h1,h6{
+     display: inline; 
+     margin: 5px;
+}
+</style>
+
+
+
+
+
+<div id="app">
+
+     <h1> v-for com Key </h1>
+
+          <!-- lista de objetos com key -->
+          <ul>
+               <li v-for="p in pessoas" :key="p.nome">
+                    {{p.nome}}
+               </li>
+          </ul>
+
+          <!-- lista simples com  com key -->
+          <template v-for="(cor,i) in cores" :key="cor">
+               <h6>{{i}}</h6>
+               <h1>{{cor}}</h1>
+          </template>
+
+     <hr />
+     <h1>lista  de numeros </h1>
+     <p>
+          <span v-for="n in 10"> {{n}} </span>     
+     </p>
+
+     <hr />
+     <h1> v-for - iterando em objetos </h1>
+
+          <!-- lista de objetos -->
+          <ul>
+               <li v-for="p in pessoas">
+                    {{p.nome}}
+               </li>
+          </ul>
+
+          <!-- for dentro do objeto valor-->
+          <ul>
+               <li v-for="p in pessoas">
+                    <span v-for="valor in p"> {{ valor }} </span>
+               </li>
+          </ul>
+
+          <!-- for dentro do for - valor chave-->
+          <ul>
+               <li v-for="p in pessoas">
+                    <div v-for="(valor,chave) in p"> {{chave}} {{ valor }} </div>
+               </li>
+          </ul>
+
+          <!-- for dentro do for -valor chave indice-->
+          <ul>
+               <li v-for="p in pessoas">
+                    <div v-for="(valor,chave, indice) in p"> {{indice}} - {{chave}} {{ valor }} </div>
+               </li>
+          </ul>
+     
+     
+     <hr />
+     <h1> v-for usando  indice </h1>
+
+          <!-- indice -->
+          <ul>
+          <li v-for="(cor,i) in cores">{{i +1}} - {{cor}}</li>
+          <!-- (elemento, indice) -->
+          </ul>
+
+
+    <hr />
+    <h1> v-for usando  template </h1>
+          <!-- usando template -->
+          <template v-for="(cor,i) in cores">
+               <h6>{{i}}</h6>
+               <h1>{{cor}}</h1>
+          </template>
+
+     <hr />
+     <h1> v-for </h1>
+          <div id="app">
+               <ul>
+                    <li v-for="cor in cores">{{cor}}</li>
+               </ul>
+          </div>
+
+</div>
+
+<script>
+     new Vue({
+          el:'#app',
+          data:{
+               cores:['vermelho','verde','amarelo','azul'],
+               pessoas:[
+                    {nome:'ana',idade:26, peso:59},
+                    {nome:'guilherme',idade:22, peso:89}
+               ]
+          }
+     });
+</script>
+

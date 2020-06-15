@@ -1,0 +1,47 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<style>
+
+</style>
+
+<h1> v-if e v-show  </h1>
+
+<div id="app">
+     <template v-if="logado">  <!-- tag template não aparece no dom -->
+          <p>Menu admin</p>
+          <p>Usuário logado: {{ nome }}</p>
+     </template>
+    
+     <!-- obs - 
+          o v-if remove o elemento da pagina. 
+          o v-show só oculta a visibilidade, mas ainda existe na dom - só da um display:none
+     -->
+
+    <p v-else-if="anonimo">Navegando como anonimo</p>
+    <p v-else>Nenhum Usuário logado</p>
+    <button @click="logado=!logado"> {{ logado ? 'Sair': 'Entrar'}} </button>
+    <input type="checkbox" v-model="anonimo"> Permite usuario anonimo
+
+
+    <hr />
+    <!-- v-show nao tem v-show-else -->
+    <footer v-show="logado">
+         bem vindo {{nome}}
+    </footer>
+    <footer v-show="!logado">
+          cadastre-se
+     </footer>
+</div>
+
+<script>
+     new Vue({
+          el:'#app',
+          data:{
+               nome :'Zé',
+               logado : false,
+               anonimo : true
+          }
+     });
+</script>
+

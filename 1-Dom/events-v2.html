@@ -1,0 +1,75 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>Normal events</p>
+    <button v-on:click="increase">Clique me</button>
+    <p>{{ count }}</p>
+    <hr />
+    <p>Events with 'event' javascript and  stop propagation</p>
+    <p v-on:mousemove="updateCoordinates">coordinates {{ x }} / {{ y }} -  <span v-on:mousemove.stop="">DeadSpot!!!</span></p>
+	
+    <hr />
+    <p>Events with our parameters</p>
+    <button v-on:click="calcMultiplo(5)">Clique me</button>
+    <p>{{ multiplo }}</p>
+
+    <hr />
+    <p>Events with 'event' javascript and our parameters (you need to put '$event')</p>
+    <input type="text" v-on:input="changeTitle('ari', $event)" />
+    <p>{{ title }}</p>
+
+    <hr />
+    <p>Prevent evento - previne o funcionamento padrão do evento</p>
+    <p><a @click.prevent="" href="www.google.com">google</a></p>
+
+    <hr />
+    <p>Evento de teclado</p>
+    <input  v-on:keyup="alertaTexto" />
+
+    <hr />
+    <p>Evento de teclado Enter</p>
+    <input  v-on:keyup.Enter="alertaEnter" />
+    
+    <hr />
+    <p>Evento de teclado Alt Enter</p>
+    <input  v-on:keyup.Alt.Enter="alertaAltEnter" />
+
+</div>
+</div>
+
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            count:0,
+            x:0,
+            y:0,
+            multiplo:1,
+            title:''
+        },methods:{
+            increase:function(){
+                this.count++;
+            },
+            updateCoordinates:function(event){
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            calcMultiplo:function(num){
+                this.multiplo *= num;
+            },
+            changeTitle:function(nome, event){
+                this.title = nome + ' -> ' + event.target.value;
+            },
+            alertaTexto(){
+                alert('teste')
+            },
+            alertaEnter(){
+                alert('Enter')
+            },
+            alertaAltEnter(){
+                alert('Alt Enter')
+            }
+        }
+    });
+</script>

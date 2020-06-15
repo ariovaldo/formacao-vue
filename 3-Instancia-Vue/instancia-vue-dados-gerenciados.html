@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue ger dados</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+          <h1>{{titulo}}  -  {{novainfo}}</h1>
+          <button @click="alterar"> alterar </button>
+     </div>
+
+</body>
+
+<script>
+
+const vm =  new Vue({
+     el:'#app',
+     data: {
+          titulo:'teste 1'
+     },
+     methods:{
+          alterar(){
+               this.titulo += '!';
+          }
+     }
+});
+
+vm.novainfo = 'teste'; //da erro pq não é uma variavel reativa (getters, setters, observers)
+console.log(vm.novainfo);
+
+</script>

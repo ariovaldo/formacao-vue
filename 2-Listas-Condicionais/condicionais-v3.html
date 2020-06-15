@@ -1,0 +1,32 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<style>
+
+</style>
+<h1> v-if usando template  </h1>
+
+<div id="app">
+     <template v-if="logado">  <!-- tag template não aparece no dom -->
+          <p>Menu admin</p>
+          <p>Usuário logado: {{ nome }}</p>
+     </template>
+    
+     <!-- obs - o v-if remove o elemento da pagina. -->
+    <p v-else-if="anonimo">Navegando como anonimo</p>
+    <p v-else>Nenhum Usuário logado</p>
+    <button @click="logado=!logado"> {{ logado ? 'Sair': 'Entrar'}} </button>
+    <input type="checkbox" v-model="anonimo"> Permite usuario anonimo
+</div>
+
+<script>
+     new Vue({
+          el:'#app',
+          data:{
+               nome :'Zé',
+               logado : false,
+               anonimo : true
+          }
+     });
+</script>
+

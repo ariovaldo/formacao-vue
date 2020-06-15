@@ -1,0 +1,107 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+
+    <p> simple for </p>
+
+    <p v-for="item in ingredients">
+        {{item}}
+    </p>
+
+    <hr><!-- ----------------------------------------- -->
+
+
+    <p> for with index (element, index) </p>
+
+    <p v-for="(ingredient,i) in ingredients">
+        {{i}} - {{ingredient}}
+    </p>
+
+    <hr><!-- ----------------------------------------- -->
+
+    <p> for with index (element, index)  - add element</p>
+
+    <p v-for="(ingredient,i) in ingredients">
+        {{i}} - {{ingredient}}
+    </p>
+    
+    <input type="text" v-model="newIngridient" >
+    <button @click="ingredients.push(newIngridient)">Add</button>
+
+    <hr><!-- ----------------------------------------- -->
+
+    <p> for with index (element, index) in a template </p>
+
+    <template v-for="(ingredient,index) in ingredients">
+        <h5>{{ingredient}}</h5>
+        <h6>{{index}}</h6>
+    </template>
+
+    <hr><!-- ----------------------------------------- -->
+
+    <p> for with objects</p>
+
+    <ul>
+        <li v-for="person in listPerson">
+            {{person.name}} - {{person.age}}
+        </li>
+    </ul>
+    
+    <hr><!-- ----------------------------------------- -->
+
+    <p> for inside for with objects</p>
+
+    <ul>
+        <li v-for="person in listPerson">
+            <span v-for="value in person">
+                {{value}}
+            </span>
+        </li>
+    </ul>
+
+    <hr><!-- ----------------------------------------- -->
+
+    <p> for inside for with objects (value key)</p>
+
+    <ul>
+        <li v-for="person in listPerson">
+            <div v-for="(value, key) in person">
+                {{key}}:{{value}}
+            </div>
+        </li>
+    </ul>
+    
+    <hr><!-- ----------------------------------------- -->
+
+    <p> for lista de numeros</p>
+
+    <span v-for="n in 10">
+        {{n}}
+    </span>
+
+    <hr><!-- ----------------------------------------- -->
+
+    <p> for with index (element, index) with key - to avoid problems</p>
+
+    <p v-for="(ingredient,i) in ingredients" :key="ingredient" >
+        {{i}} - {{ingredient}}
+    </p>
+
+    <hr><!-- ----------------------------------------- -->
+
+
+</div>
+
+<script>
+
+    new Vue({
+        el: "#app",
+        data: {
+            ingredients: ['meat', 'fruit', 'cookies'],
+            newIngridient:'',
+            listPerson: [
+                { name: 'Max', age: 27, color: 'red' },
+                { name: 'Anna', age: 'unknown', color: 'blue' }
+            ]
+        }
+    });
+</script>

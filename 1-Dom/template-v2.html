@@ -1,0 +1,26 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+     <p>{{title}}</p>
+     <button @click = "changeTitle">teste</button>
+     <p> {{ saudacao() }} </p>
+     <p> {{ 1 + 1 }} </p>
+</div>
+
+<script>
+     new Vue({
+          el:'#app',
+          data:{
+               title: "Hello World"
+          },
+          methods:{
+               changeTitle : function(){
+                    this.title = 'Hello';
+                    return this.title;
+               },
+               saudacao : function(){
+                    return 'boa semana';
+               }
+          }
+     });
+</script>

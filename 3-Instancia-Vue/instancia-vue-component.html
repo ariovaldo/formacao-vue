@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue component</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+         <cnp1></cnp1>
+         <cnp1></cnp1>
+     </div>
+
+</body>
+
+<script>
+
+Vue.component('cnp1',{
+     template: `
+          <div>
+               <h1>{{aula}}</h1>
+               <h1>{{modulo}}</h1>
+               <hr />
+               <button @click="alterarAula"> alterar titulo </button>
+               <button @click="alterarModulo"> alterar titulo </button>
+          </div>
+     `,
+     data: function() {
+          return {
+               aula:'aula: montando instancia Vue',
+               modulo: 'modulo: teste '
+          }
+     },
+     methods:{
+          alterarAula(){
+               this.aula += '!';
+          },
+          alterarModulo(){
+               this.modulo += '!';
+          }
+     }
+});
+
+
+const vm =  new Vue({
+     el:'#app',
+});
+
+</script>

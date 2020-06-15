@@ -1,0 +1,69 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<style>
+      .caixa{
+          display: flex;           
+          justify-content: space-around;
+      }
+      .demo{
+           width: 100px;
+           height: 100px;
+           background-color: gray;
+      }
+      .c1{ background-color: red; }
+      .c2{ background-color: green; }
+      .c3{ background-color: blue; }
+      .girar{ transform: rotate(45deg);}
+</style>
+
+<div id="app">
+     <div class="caixa">
+          <div class="demo" :class="estilo1" @click="aplicarC1 = !aplicarC1"></div>
+          <div class="demo" :class="{c1:aplicarC1, c2:!aplicarC1}" @click="aplicarC1 = !aplicarC1"></div>
+          <div class="demo" :class="[classeCSS,{girar:aplicarGirar}]" @mouseover ="aplicarC1 = !aplicarC1"></div>
+          <div class="demo" :style="rotate"></div>
+          <div class="demo" :style="{backgroundColor:cor}"></div>
+          <div class="demo" :style="largura1"></div>
+     </div>
+     <hr>
+          <input type="text" v-model="classeCSS">
+          <button @click="GirarCss" >Girar</button>
+          <input type="text" v-model="cor">
+          <input type="text" v-model="largura">
+</div>
+
+<script>
+     new Vue({
+          el:'#app',
+          data:{
+               aplicarC1 :false,
+               classeCSS :'c1',
+               aplicarGirar : true,
+               angulo:0,
+               cor: 'red',
+               largura:100
+          },
+          methods:{
+               GirarCss(){
+                    this.aplicarGirar = !this.aplicarGirar;
+                    this.angulo += 20;
+               }
+          },
+          computed:{
+               estilo1(){
+                    return{
+                         c1: this.aplicarC1,
+                         c2: !this.aplicarC1 
+                    }
+               },
+               rotate(){
+                    return { transform: 'rotate(' + this.angulo + 'deg)'}        
+               },
+               largura1(){
+                    return { width:  this.largura + 'px'}        
+               }
+          }
+     });
+</script>
+
+
